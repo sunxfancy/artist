@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project(artist)
-SET(CMAKE_CXX_COMPILER_ENV_VAR "CXX")
+SET(CMAKE_CXX_COMPILER "g++")
 SET(CMAKE_CXX_FLAGS "-std=c++11")
 
 find_package(PkgConfig)
@@ -8,13 +8,19 @@ pkg_check_modules(GTKMM gtkmm-3.0)
 link_directories(${GTKMM_LIBRARY_DIRS})
 include_directories(${GTKMM_INCLUDE_DIRS})
 
-file(GLOB_RECURSE source_files "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+INCLUDE_DIRECTORIES("${CMAKE_CURRENT_SOURCE_DIR}/lib/lua_include")
+INCLUDE_DIRECTORIES("${CMAKE_CURRENT_SOURCE_DIR}/lib/cJSON")
+LINK_DIRECTORIES("${CMAKE_CURRENT_SOURCE_DIR}/lib")
+
+file(GLOB_RECURSE source_files "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp" 
+                               "${CMAKE_CURRENT_SOURCE_DIR}/lib/cJSON/*.c")
 add_executable(artist ${source_files})
-target_link_libraries(artist ${GTKMM_LIBRARIES})
+target_link_libraries(artist ${GTKMM_LIBRARIES} lua dl)
+set(EXECUTABLE_OUTPUT_PATH ../)
 
 FIND_PACKAGE(Doxygen)  
 OPTION(BUILD_DOCUMENTATION "Create and install the HTML based API documentation (requires Doxygen)" ${DOXYGEN_FOUND})  
-  
+
 IF(BUILD_DOCUMENTATION)  
     IF(NOT DOXYGEN_FOUND)  
         MESSAGE(FATAL_ERROR "Doxygen is needed to build the documentation.")  

@@ -1,3 +1,8 @@
 build/
+Release/
+Debug/
+lua
+artist
+*.so
 *.sublime-project
 *.sublime-workspace

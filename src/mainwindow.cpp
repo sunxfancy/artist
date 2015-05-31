@@ -2,10 +2,11 @@
 * @Author: sxf
 * @Date:   2015-05-28 18:56:36
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-05-28 23:37:09
+* @Last Modified time: 2015-05-29 19:02:58
 */
 
 #include "mainwindow.h"
+#include "myarea.h"
 #include <iostream>
 
 class MainWindow_private
@@ -64,7 +65,7 @@ MainWindow* MainWindow::CreateFromBuilder() {
 		std::cerr << "BuilderError: " << ex.what() << std::endl;
 		return NULL;
 	}
-	MainWindow* pWindow = 0;
+	MainWindow* pWindow = NULL;
 	refBuilder->get_widget_derived<MainWindow>("mainwindow", pWindow);
 	return pWindow;
 }
