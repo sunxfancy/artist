@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-05-28 18:56:36
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-05-29 19:02:58
+* @Last Modified time: 2015-06-01 14:36:49
 */
 
 #include "mainwindow.h"
@@ -35,6 +35,8 @@ MainWindow::MainWindow(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
 		priv->mp_new_file_action->signal_activate().connect(
 			sigc::mem_fun(*priv, &MainWindow_private::on_new_file_clicked) );
 	}
+
+	set_events( Gdk::POINTER_MOTION_MASK | Gdk::BUTTON_PRESS_MASK | Gdk::BUTTON_RELEASE_MASK );
 }
 
 MainWindow::~MainWindow() {
