@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-05-29 18:47:41
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-05-31 15:28:48
+* @Last Modified time: 2015-06-02 17:00:46
 */
 
 #ifndef APP_H
@@ -12,6 +12,8 @@
 #include "luacontainer.h"
 #include "actionmanager.h"
 #include "packagemanager.h"
+#include "myarea.h"
+#include "tools.h"
 
 class App_private;
 class App
@@ -22,7 +24,9 @@ private:
 
 public:
 	static void Init();  
+	static MyArea* 			getMyArea();
 	static MainWindow* 		getMainWindow();
+	static Tools*			getTools();
 	static LuaContainer* 	getLuaContainer();
 	static ActionManager* 	getActionManager();
 	static PackageManager*  getPackageManager();

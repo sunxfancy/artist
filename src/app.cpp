@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-05-29 19:09:27
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-05-31 15:49:51
+* @Last Modified time: 2015-06-02 15:09:55
 */
 
 #include "app.h"
@@ -11,10 +11,11 @@ class App_private
 {
 public:
 	MainWindow* 	mainWindow;
+	MyArea*			myArea;
 	LuaContainer*	luaContainer;
 	ActionManager*	actionManager;
 	PackageManager* packageManager;
-
+	Tools* 			tools;
 	void init();
 };
 
@@ -29,6 +30,14 @@ void App::Init() {
 
 MainWindow* App::getMainWindow() {
 	return getInstance().priv->mainWindow;
+}
+
+MyArea* App::getMyArea() {
+	return getInstance().priv->myArea;
+}
+
+Tools* App::getTools() {
+	return getInstance().priv->tools;
 }
 
 LuaContainer* App::getLuaContainer() {
@@ -54,6 +63,8 @@ void App_private::init() {
 	luaContainer   = new LuaContainer();
 	packageManager = new PackageManager();
 	actionManager  = new ActionManager();
+	myArea         = mainWindow->getMyArea();
+	tools          = new Tools();
 
 	luaContainer->RunLuaShell();
 	luaContainer->RunLuafile("packages/init.lua");

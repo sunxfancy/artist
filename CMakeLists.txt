@@ -3,25 +3,27 @@ project(artist)
 SET(CMAKE_CXX_COMPILER "g++")
 SET(CMAKE_CXX_FLAGS "-std=c++11")
 
-find_package(PkgConfig)
-pkg_check_modules(GTKMM gtkmm-3.10)
-link_directories(${GTKMM_LIBRARY_DIRS})
-include_directories(${GTKMM_INCLUDE_DIRS})
-
 INCLUDE_DIRECTORIES(
     "${CMAKE_CURRENT_SOURCE_DIR}/lib/lua_include"
     "${CMAKE_CURRENT_SOURCE_DIR}/lib/cJSON"
     "${CMAKE_CURRENT_SOURCE_DIR}/src"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/packages"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/ui"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/tools"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/ui"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/utils"
 )
-LINK_DIRECTORIES("${CMAKE_CURRENT_SOURCE_DIR}/lib")
 
 file(GLOB_RECURSE source_files 
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/lib/cJSON/cJSON.c")
+
+LINK_DIRECTORIES("${CMAKE_CURRENT_SOURCE_DIR}/lib")
+
+find_package(PkgConfig)
+pkg_check_modules(GTKMM gtkmm-3.10)
+link_directories(${GTKMM_LIBRARY_DIRS})
+include_directories(${GTKMM_INCLUDE_DIRS})
 
 add_executable(artist ${source_files})
 target_link_libraries(artist ${GTKMM_LIBRARIES} lua dl)

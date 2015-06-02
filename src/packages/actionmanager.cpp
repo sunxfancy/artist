@@ -2,18 +2,20 @@
 * @Author: sxf
 * @Date:   2015-05-28 23:21:36
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-05-28 23:33:16
+* @Last Modified time: 2015-06-02 17:04:11
 */
 
 #include "actionmanager.h"
+#include <map>
+#include <string>
+#include "app.h"
 
+using namespace std;
 
 class ActionManager_private
 {
 public:
-	ActionManager_private();
-	~ActionManager_private();
-	
+	map<string, string> action_map;
 };
 
 ActionManager::ActionManager() {
@@ -24,10 +26,15 @@ ActionManager::~ActionManager() {
 	delete priv;
 }
 
-ActionManager_private::ActionManager_private() {
-	
+void ActionManager::RegisterAction(const char* name, const char* code) {
+	priv->action_map[name] = code;
 }
 
-ActionManager_private::~ActionManager_private() {
-	
+void ActionManager::Do(const char* name) {
+	LuaContainer* lua = App::getLuaContainer();
+	auto p = priv->action_map.find(name);
+	if (p != priv->action_map.end())
+		lua->RunLuaCode(p->second.c_str());
+	else
+		printf("Error: Can't find the Action [ %s ]\n", name);
 }

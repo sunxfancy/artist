@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-05-28 23:33:35
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-05-28 23:35:42
+* @Last Modified time: 2015-06-02 14:32:23
 */
 
 #ifndef MYAREA_H
@@ -11,12 +11,20 @@
 #include <gtkmm.h>
 
 class MyArea_private;
+
+/**
+ * @brief 自定义的绘图区域，复制将图像绘制出来
+ */
 class MyArea : public Gtk::DrawingArea
 {
 public:
 	MyArea(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
-	~MyArea();
+	virtual ~MyArea();
+
+	void Updata();
+
 protected:
+	bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
 	MyArea_private* priv;
 };
 

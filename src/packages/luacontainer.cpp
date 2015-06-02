@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-05-29 10:09:39
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-01 15:23:10
+* @Last Modified time: 2015-06-01 15:52:30
 */
 
 #include "luacontainer.h"
@@ -77,7 +77,7 @@ void LuaContainer_private::init() {
 		msg m = Q.front();
 		Q.pop();
 		mutex.unlock();
-
+		
 		if (m.type == 1) run_file(m.data.c_str());
 		if (m.type == 2) run_code(m.data.c_str());
 	}

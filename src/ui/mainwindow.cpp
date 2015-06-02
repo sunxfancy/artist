@@ -2,11 +2,10 @@
 * @Author: sxf
 * @Date:   2015-05-28 18:56:36
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-01 14:36:49
+* @Last Modified time: 2015-06-01 20:18:54
 */
 
 #include "mainwindow.h"
-#include "myarea.h"
 #include <iostream>
 
 class MainWindow_private
@@ -43,6 +42,9 @@ MainWindow::~MainWindow() {
 	delete priv;
 }
 
+MyArea* MainWindow::getMyArea() {
+	return priv->mp_area;
+}
 
 
 MainWindow* MainWindow::CreateFromBuilder() {
