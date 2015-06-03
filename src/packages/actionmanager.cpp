@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-05-28 23:21:36
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-02 20:32:02
+* @Last Modified time: 2015-06-03 20:42:12
 */
 
 #include "packages/actionmanager.h"
@@ -38,5 +38,9 @@ void ActionManager::Do(const char* name) {
 		printf("Error: Can't find the Action [ %s ]\n", name);
 }
 
+void ActionManager::getAllAction(std::vector<const char*>& ans) {
+	for (auto action : priv->action_map) 
+		ans.push_back(action.first.c_str());
+}
 
 sigc::signal<void, const char*> ActionManager::signal_run_lua_code;

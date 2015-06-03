@@ -1,0 +1,10 @@
+{
+	"name" : "uibase",
+	"lua_main" : "file_action.lua",
+	"actions" : {
+		"New File" : "FileAction.New()",
+		"Save File" : "FileAction.Save()",
+		"Save As..." : "FileAction.SaveAs()",
+		"Open File" : "FileAction.Open()"
+	}
+}

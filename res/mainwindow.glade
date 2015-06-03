@@ -8,6 +8,8 @@
     <property name="stock_id">gtk-new</property>
     <property name="icon_name">document-new</property>
   </object>
+  <object class="GtkAction" id="open_file_action"/>
+  <object class="GtkAction" id="save_file_action"/>
   <object class="GtkWindow" id="mainwindow">
     <property name="width_request">800</property>
     <property name="height_request">600</property>
@@ -37,12 +39,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="open_file">
+                <property name="related_action">open_file_action</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">打开</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-open</property>
-                <signal name="clicked" handler="on_open_file_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -51,12 +53,12 @@
             </child>
             <child>
               <object class="GtkToolButton" id="save_file">
+                <property name="related_action">save_file_action</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">保存</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-save</property>
-                <signal name="clicked" handler="on_save_file_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>

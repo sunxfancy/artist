@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-05-28 18:55:35
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-02 20:36:00
+* @Last Modified time: 2015-06-03 20:03:32
 */
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
@@ -28,6 +28,10 @@ public:
 	 * @brief 获取一个绘图控件
 	 */
 	MyArea* getMyArea();
+
+	void gtkActionRunCode(const char* name, const char* code);
+
+	void gtkActionRunAction(const char* name, const char* action);
 
 	/**
 	 * @brief 创建该窗体的唯一方法

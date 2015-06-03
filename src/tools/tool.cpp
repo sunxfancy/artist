@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-06-01 15:56:55
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-03 17:05:02
+* @Last Modified time: 2015-06-03 21:42:40
 */
 
 #include "tools/tool.h"
@@ -30,7 +30,7 @@ public:
 
 Tool::Tool(const char* name) {
 	priv = new Tool_private();
-	priv->name = name;
+	if (name) priv->name = name;
 	priv->is_alltime_listen_move = priv->is_clicked = false;
 }
 
@@ -74,12 +74,12 @@ t_mouse_hook Tool::signal_mouse_release() const {
 }
 
 bool Tool_private::on_mouseclick(GdkEventButton* p) {
-	if (is_alltime_listen_move) is_clicked = true;
+	if (!is_alltime_listen_move) is_clicked = true;
 	return m_mouse_click.emit(p->x, p->y);
 }
 
 bool Tool_private::on_mouserelease(GdkEventButton* p) {
-	if (is_alltime_listen_move) is_clicked = false;
+	if (!is_alltime_listen_move) is_clicked = false;
 	return m_mouse_release.emit(p->x, p->y);
 }
 

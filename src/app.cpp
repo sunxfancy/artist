@@ -2,11 +2,12 @@
 * @Author: sxf
 * @Date:   2015-05-29 19:09:27
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-03 17:02:35
+* @Last Modified time: 2015-06-03 19:35:54
 */
 
 #include "app.h"
 #include "tools/luatool.h"
+#include "ui/actionproxy.h"
 
 class App_private
 {
@@ -17,7 +18,9 @@ public:
 	ActionManager*	actionManager;
 	PackageManager* packageManager;
 	Tools* 			tools;
+
 	void init();
+	void init_signal();
 };
 
 App::App() {
@@ -67,6 +70,13 @@ void App_private::init() {
 	myArea         = mainWindow->getMyArea();
 	tools          = new Tools();
 
+	init_signal();
+
+	luaContainer->RunLuaShell();
+	luaContainer->RunLuaFile("packages/init.lua");
+}
+
+void App_private::init_signal() {
 	ActionManager::signal_run_lua_code.connect(
 		sigc::mem_fun(*luaContainer, &LuaContainer::RunLuaCode));
 	Package::signal_run_lua_file.connect(
@@ -75,7 +85,8 @@ void App_private::init() {
 		sigc::mem_fun(*actionManager, &ActionManager::Register));
 	LuaTool::signal_run_task.connect(
 		sigc::mem_fun(*luaContainer, &LuaContainer::RunTask));
-
-	luaContainer->RunLuaShell();
-	luaContainer->RunLuaFile("packages/init.lua");
+	ActionProxy::signal_action_do.connect(
+		sigc::mem_fun(*actionManager, &ActionManager::Do));
+	ActionProxy::signal_run_lua_code.connect(
+		sigc::mem_fun(*luaContainer, &LuaContainer::RunLuaCode));
 }

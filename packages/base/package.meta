@@ -2,5 +2,6 @@
 	"name" : "base",
 	"tools" : [
 		"select.art-tool"
-	]
+	],
+	"lua_main" : "base.lua"
 }
