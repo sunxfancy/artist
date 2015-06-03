@@ -2,18 +2,19 @@
 * @Author: sxf
 * @Date:   2015-05-29 18:47:41
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-02 17:00:46
+* @Last Modified time: 2015-06-02 20:38:00
 */
 
 #ifndef APP_H
 #define APP_H
 
-#include "mainwindow.h"
-#include "luacontainer.h"
-#include "actionmanager.h"
-#include "packagemanager.h"
-#include "myarea.h"
-#include "tools.h"
+#include "ui/mainwindow.h"
+#include "packages/luacontainer.h"
+#include "packages/actionmanager.h"
+#include "packages/packagemanager.h"
+#include "packages/package.h"
+#include "ui/myarea.h"
+#include "tools/tools.h"
 
 class App_private;
 class App

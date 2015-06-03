@@ -2,12 +2,12 @@
 * @Author: sxf
 * @Date:   2015-06-02 14:10:32
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-02 14:30:54
+* @Last Modified time: 2015-06-02 20:37:40
 */
 #ifndef BRUSH_H
 #define BRUSH_H
 
-#include "tool.h"
+#include "tools/tool.h"
 
 typedef sigc::signal<void, double, double, int> t_brush_move_hook;
 typedef sigc::signal<void> t_brush_notice_hook;

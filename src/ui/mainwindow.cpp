@@ -2,10 +2,10 @@
 * @Author: sxf
 * @Date:   2015-05-28 18:56:36
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-01 20:18:54
+* @Last Modified time: 2015-06-02 20:37:15
 */
 
-#include "mainwindow.h"
+#include "ui/mainwindow.h"
 #include <iostream>
 
 class MainWindow_private

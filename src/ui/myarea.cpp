@@ -2,10 +2,10 @@
 * @Author: sxf
 * @Date:   2015-05-28 23:34:34
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-01 20:48:14
+* @Last Modified time: 2015-06-02 20:37:21
 */
 
-#include "myarea.h"
+#include "ui/myarea.h"
 
 class MyArea_private
 {

@@ -2,11 +2,13 @@
 * @Author: sxf
 * @Date:   2015-05-30 13:20:33
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-01 20:39:08
+* @Last Modified time: 2015-06-02 20:16:01
 */
 
 #ifndef PACKAGE_H
 #define PACKAGE_H
+
+#include <sigc++/sigc++.h>
 
 class Package_private;
 
@@ -37,6 +39,9 @@ public:
 	 * @brief 获取包的名字，一个包的名字默认在meta文件中的name字段定义，如果没有该字段，则以包文件夹的名字为包名
 	 */
 	const char* getName() const;
+
+	static sigc::signal<void, const char*> 				signal_run_lua_file;
+	static sigc::signal<void, const char*, const char*> signal_action_register;
 protected:
 	Package_private* priv;
 };

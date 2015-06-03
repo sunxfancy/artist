@@ -2,32 +2,29 @@
 * @Author: sxf
 * @Date:   2015-05-30 13:25:26
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-02 17:03:12
+* @Last Modified time: 2015-06-02 20:33:21
 */
 
-#include "package.h"
-#include <string>
-#include "app.h"
-#include "brush.h"
-#include "fileloader.h"
+#include "packages/package.h"
+#include "tools/brush.h"
+#include "utils/fileloader.h"
 #include "cJSON.h"
 #include <map>
+#include <string>
 
 using namespace std;
 
 class Package_private
 {
 public:
-	Package_private();
-	~Package_private();
-	
 	void parser_json();
 	char* load_file();  
 	void parser_name(cJSON* root);
 	void parser_lua_main(cJSON* root);
 	void parser_tools(cJSON* root);
+	void parser_actions(cJSON* root);
 
-	string name;	 //
+	string name;
 	string lua_main; // lua文件名
 	
 	string env_path; // 包环境路径
@@ -50,10 +47,9 @@ Package::~Package() {
 }
 
 void Package::Load() {
-	LuaContainer* lua = App::getLuaContainer();
 	if (!priv->lua_main.empty()) {
 		string lua_file_path = priv->env_path + priv->lua_main;
-		lua->RunLuafile(lua_file_path.c_str());
+		signal_run_lua_file.emit(lua_file_path.c_str());
 	}
 }
 
@@ -65,13 +61,6 @@ const char* Package::getName() const {
 	return priv->name.c_str();
 }
 
-Package_private::Package_private() {
-	
-}
-
-Package_private::~Package_private() {
-	
-}
 
 void Package_private::parser_json() {
 	char* data = FileLoader::load(json_path.c_str());
@@ -86,7 +75,8 @@ void Package_private::parser_json() {
 	parser_name(cj);
 	parser_lua_main(cj);
 	parser_tools(cj);
-	
+	parser_actions(cj);
+
 	cJSON_Delete(cj);
 	delete data;
 }
@@ -115,3 +105,15 @@ void Package_private::parser_tools(cJSON* root) {
 			if ( p->type == cJSON_String ) 
 				tool_set[ p->valuestring ] = NULL;
 }
+
+void Package_private::parser_actions(cJSON* root) {
+	cJSON *tools = cJSON_GetObjectItem(root, "actions");
+	if ( tools && tools->type == cJSON_Object ) 
+		for ( cJSON* p = tools->child; p != NULL; p = p->next ) 
+			if ( p->type == cJSON_String ) 
+				Package::signal_action_register.emit(p->string, p->valuestring);
+}
+
+
+sigc::signal<void, const char*> 				Package::signal_run_lua_file;
+sigc::signal<void, const char*, const char*> 	Package::signal_action_register;

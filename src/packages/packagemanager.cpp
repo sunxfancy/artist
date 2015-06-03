@@ -2,11 +2,11 @@
 * @Author: sxf
 * @Date:   2015-05-30 12:30:13
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-05-31 15:48:35
+* @Last Modified time: 2015-06-02 20:33:38
 */
 
-#include "packagemanager.h"
-#include "package.h"
+#include "packages/packagemanager.h"
+#include "packages/package.h"
 #include <list>
 #include <map>
 #include <iostream>

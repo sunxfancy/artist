@@ -2,13 +2,13 @@
 * @Author: sxf
 * @Date:   2015-06-01 15:56:09
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-01 21:18:43
+* @Last Modified time: 2015-06-03 17:05:04
 */
 
 #ifndef TOOL_H
 #define TOOL_H
 
-#include "gtkmm.h"
+#include <sigc++/sigc++.h> 
 typedef sigc::signal<bool, double, double> t_mouse_hook;
 
 class Tool_private;
@@ -21,7 +21,8 @@ public:
 	const char* getName() const;
 	void Active();
 	void UnActive();
-
+	void set_is_alltime_listen_move(bool b);
+	
 	t_mouse_hook signal_mouse_click() const;
 	t_mouse_hook signal_mouse_move() const;
 	t_mouse_hook signal_mouse_release() const;

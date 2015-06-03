@@ -4,13 +4,9 @@ SET(CMAKE_CXX_COMPILER "g++")
 SET(CMAKE_CXX_FLAGS "-std=c++11")
 
 INCLUDE_DIRECTORIES(
+    "${CMAKE_CURRENT_SOURCE_DIR}/src"
     "${CMAKE_CURRENT_SOURCE_DIR}/lib/lua_include"
     "${CMAKE_CURRENT_SOURCE_DIR}/lib/cJSON"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/packages"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/tools"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/ui"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/utils"
 )
 
 file(GLOB_RECURSE source_files 

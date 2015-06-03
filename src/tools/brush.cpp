@@ -2,10 +2,10 @@
 * @Author: sxf
 * @Date:   2015-06-02 14:17:26
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-02 14:42:21
+* @Last Modified time: 2015-06-02 20:35:26
 */
 
-#include "brush.h"
+#include "tools/brush.h"
 
 class Brush_private
 {

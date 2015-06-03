@@ -2,13 +2,13 @@
 * @Author: sxf
 * @Date:   2015-05-28 18:55:35
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-01 20:45:36
+* @Last Modified time: 2015-06-02 20:36:00
 */
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <gtkmm.h>
-#include "myarea.h"
+#include "ui/myarea.h"
 
 class MainWindow_private;
 
