@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-05-29 18:47:41
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-02 20:38:00
+* @Last Modified time: 2015-06-08 17:12:22
 */
 
 #ifndef APP_H
@@ -15,6 +15,7 @@
 #include "packages/package.h"
 #include "ui/myarea.h"
 #include "tools/tools.h"
+#include "pixels/bitmap.h"
 
 class App_private;
 class App
@@ -31,6 +32,7 @@ public:
 	static LuaContainer* 	getLuaContainer();
 	static ActionManager* 	getActionManager();
 	static PackageManager*  getPackageManager();
+	static Bitmap*			getBitmap();
 	static App& getInstance();
 };
 

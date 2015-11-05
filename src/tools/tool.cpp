@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-06-01 15:56:55
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-03 21:42:40
+* @Last Modified time: 2015-06-09 23:34:33
 */
 
 #include "tools/tool.h"
@@ -19,6 +19,9 @@ public:
 	t_mouse_hook m_mouse_click;
 	t_mouse_hook m_mouse_move;
 	t_mouse_hook m_mouse_release;
+
+	int d_time;
+	guint32 last_time;
 
 	bool is_alltime_listen_move;
 	bool is_clicked;
@@ -57,6 +60,10 @@ void Tool::UnActive() {
 
 }
 
+int Tool::getDeltaTime() {
+	return priv->d_time;
+}
+
 void Tool::set_is_alltime_listen_move(bool b) {
 	priv->is_alltime_listen_move = b;
 }
@@ -75,17 +82,44 @@ t_mouse_hook Tool::signal_mouse_release() const {
 
 bool Tool_private::on_mouseclick(GdkEventButton* p) {
 	if (!is_alltime_listen_move) is_clicked = true;
+	d_time = 0;
 	return m_mouse_click.emit(p->x, p->y);
 }
 
 bool Tool_private::on_mouserelease(GdkEventButton* p) {
 	if (!is_alltime_listen_move) is_clicked = false;
+	d_time = p->time - last_time;
+	last_time = p->time;
 	return m_mouse_release.emit(p->x, p->y);
 }
 
+static void
+print_axes (GdkDevice *device, gdouble *axes)
+{
+	int i;
+	if (axes) {
+		g_print ("%s ", gdk_device_get_name(device));
+		for (i = 0; i < gdk_device_get_n_axes(device); i++) 
+			g_print ("%g ", axes[i]);
+		g_print ("\n");
+	}
+}
+
 bool Tool_private::on_mousemove(GdkEventMotion* p) {
-	if (is_alltime_listen_move || is_clicked)
+	double press = 0;
+	GdkDevice* d = gdk_event_get_source_device((GdkEvent*)p);
+	print_axes (p->device, p->axes);
+	gdk_event_get_axis ((GdkEvent*)p, GDK_AXIS_LAST, &press);
+
+	// gdk_device_get_axis (d, NULL, GDK_AXIS_PRESSURE, &press);
+
+	printf("%s\n", gdk_device_get_name (d));
+	printf("X: %f\tY: %f\t PRESS: %f\n", p->x, p->y, press);
+	if (is_alltime_listen_move || is_clicked) {
+		d_time = p->time - last_time;
+		last_time = p->time;
 		return m_mouse_move.emit(p->x, p->y);
+	}
 	else return false;
 }
 

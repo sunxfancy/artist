@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-05-28 23:33:35
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-02 14:32:23
+* @Last Modified time: 2015-06-08 17:18:27
 */
 
 #ifndef MYAREA_H
@@ -21,10 +21,9 @@ public:
 	MyArea(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 	virtual ~MyArea();
 
-	void Updata();
-
+	void update();
+	void set_pixbuf(Gdk::Pixbuf* data);
 protected:
-	bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
 	MyArea_private* priv;
 };
 

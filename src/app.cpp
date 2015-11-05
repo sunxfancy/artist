@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-05-29 19:09:27
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-03 19:35:54
+* @Last Modified time: 2015-06-08 17:12:59
 */
 
 #include "app.h"
@@ -18,7 +18,7 @@ public:
 	ActionManager*	actionManager;
 	PackageManager* packageManager;
 	Tools* 			tools;
-
+	Bitmap*			bitmap;
 	void init();
 	void init_signal();
 };
@@ -56,6 +56,10 @@ PackageManager* App::getPackageManager() {
 	return getInstance().priv->packageManager;
 }
 
+Bitmap* App::getBitmap() {
+	return getInstance().priv->bitmap;
+}
+
 App& App::getInstance()  
 {  
     static App instance;   //局部静态变量  
@@ -69,6 +73,9 @@ void App_private::init() {
 	actionManager  = new ActionManager();
 	myArea         = mainWindow->getMyArea();
 	tools          = new Tools();
+	bitmap         = new Bitmap();
+
+	myArea->set_pixbuf( bitmap->getData() );
 
 	init_signal();
 

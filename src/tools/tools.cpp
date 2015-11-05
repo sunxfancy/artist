@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-06-01 15:54:12
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-03 21:27:00
+* @Last Modified time: 2015-09-02 13:19:02
 */
 
 #include "tools/tools.h"
@@ -10,7 +10,8 @@
 #include <string>
 #include <string.h>
 #include "tools/brush.h"
-
+#include "tools/brushdefault.h"
+#include "tools/brushbezier.h"
 using namespace std;
 
 class Tools_private
@@ -24,6 +25,8 @@ public:
 
 Tool* Tools_private::default_tools[] = {
 	new Brush(), 
+	new BrushDefault(),
+	new BrushBezier(),
 	NULL
 };
 

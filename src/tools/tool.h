@@ -2,7 +2,7 @@
 * @Author: sxf
 * @Date:   2015-06-01 15:56:09
 * @Last Modified by:   sxf
-* @Last Modified time: 2015-06-03 17:05:04
+* @Last Modified time: 2015-06-08 11:13:44
 */
 
 #ifndef TOOL_H
@@ -22,6 +22,7 @@ public:
 	void Active();
 	void UnActive();
 	void set_is_alltime_listen_move(bool b);
+	int getDeltaTime();
 	
 	t_mouse_hook signal_mouse_click() const;
 	t_mouse_hook signal_mouse_move() const;

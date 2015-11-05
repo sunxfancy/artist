@@ -1,7 +1,7 @@
 -- @Author: sxf
 -- @Date:   2015-05-31 15:50:02
 -- @Last Modified by:   sxf
--- @Last Modified time: 2015-06-03 21:11:15
+-- @Last Modified time: 2015-09-02 13:19:29
 
 print("Hello World")
 
@@ -17,3 +17,5 @@ end
 
 artist.AddSearchPath("packages")
 artist.SearchPackages()
+
+artist.ActiveTool("brush-bezier")

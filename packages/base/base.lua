@@ -1,7 +1,7 @@
 -- @Author: sxf
 -- @Date:   2015-06-03 21:04:27
 -- @Last Modified by:   sxf
--- @Last Modified time: 2015-06-03 21:40:53
+-- @Last Modified time: 2015-06-08 16:56:34
 
 local base_tool_select = {}
 
@@ -27,4 +27,3 @@ artist.AddToolFromLua(
 	"base_tool_select.onrelease",
 	"base_tool_select.onmove" )
 
-artist.ActiveTool("select-tool")
